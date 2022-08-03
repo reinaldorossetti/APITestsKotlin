@@ -18,7 +18,7 @@ import java.io.File
 open class Setup {
 
     private val pathProject: String = System.getProperty("user.dir")
-    var loginJson = File("$pathProject/src/test/kotlin/resources/login.json").readText(Charsets.UTF_8)
+    private var loginJson = File("$pathProject/src/test/kotlin/resources/login.json").readText(Charsets.UTF_8)
     val loginData: LoginData = Gson().fromJson(loginJson, LoginData::class.java)
     val gson = Gson()
 

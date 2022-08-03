@@ -32,7 +32,6 @@ class CartTests : Setup() {
     fun `create kart before tests and get token`(){
         usersRequests.createUser(user)
         response = login.loginRequest(user.email, user.password)
-
         token = response.jsonPath().get("authorization")
         val prod = ProductRequests()
         val resp: Response = prod.getAllProducts()
@@ -55,8 +54,8 @@ class CartTests : Setup() {
     fun `create new cart`() {
         val prod = ProductRequests()
         val resp: Response = prod.getAllProducts()
-        val _id = resp.jsonPath().getString("produtos[0]._id")
-        response = request.createCart(token, _id, 3)
+        val id = resp.jsonPath().getString("produtos[0]._id")
+        response = request.createCart(token, id, 3)
         assertEquals(HttpStatus.SC_CREATED, response.statusCode())
         assertEquals("Cadastro realizado com sucesso", response.jsonPath().get("message"))
     }

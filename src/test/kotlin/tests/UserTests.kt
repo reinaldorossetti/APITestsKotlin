@@ -4,7 +4,6 @@ package tests
 
 import core.Setup
 import factory.User
-import io.github.serpro69.kfaker.Faker
 import io.restassured.response.Response
 import org.apache.http.HttpStatus
 import org.junit.jupiter.api.DisplayName
@@ -55,5 +54,14 @@ class UserTests : Setup() {
         response = usersRequests.updateUser(_id, User())
         assertEquals(HttpStatus.SC_OK, response.statusCode())
         assertEquals("Registro alterado com sucesso", response.jsonPath().get("message"))
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("Deletando o usuário")
+    fun `delete an user` (){
+        response = usersRequests.deleteUser(_id)
+        assertEquals(HttpStatus.SC_OK, response.statusCode())
+        assertEquals("Registro excluído com sucesso", response.jsonPath().get("message"))
     }
 }
