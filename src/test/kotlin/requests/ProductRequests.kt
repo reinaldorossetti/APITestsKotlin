@@ -1,5 +1,6 @@
 package requests
 
+import com.google.gson.Gson
 import core.Setup
 import factory.Product
 import io.restassured.filter.log.LogDetail
@@ -10,6 +11,8 @@ import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
 import io.restassured.response.Response
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 open class ProductRequests : Setup() {
 

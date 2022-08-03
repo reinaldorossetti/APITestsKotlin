@@ -26,6 +26,11 @@ class LoginTests : Setup() {
     @Test
     @Order(1)
     @DisplayName("Login bem sucedido")
+
+    fun `login succeeded` () {
+        response = usersRequests.createUser(user)
+        assertEquals(HttpStatus.SC_CREATED, response.statusCode())
+        response = login.loginRequest(user.email, user.password )
         assertEquals(HttpStatus.SC_OK, response.statusCode)
         assertEquals("Login realizado com sucesso", response.jsonPath().get("message"))
     }
